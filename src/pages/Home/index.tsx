@@ -8,15 +8,14 @@ import { styles } from './styles';
 
 export const Home = () => {
     const [newTask, setNewTask] = useState('');
-    const [tasks, setTasks] = useState<ITask[]>([]);
-    // const tasks = React.useContext(TasksContext);
+    const { addTask } = React.useContext(TasksContext);
 
     const handleAddPress = () => {
         const data = {
-            id: tasks.length + 1,
+            id: Number(new Date().getMilliseconds()),
             title: newTask ? newTask : 'Task empty'
         }
-        setTasks([...tasks, data]);
+        addTask(data);
         setNewTask('');
     }
 
@@ -34,7 +33,7 @@ export const Home = () => {
 
                 <Text style={styles.text}>My Tasks</Text>
 
-                <TaskList tasks={tasks} />
+                <TaskList />
 
             </View>
         </SafeAreaView>
