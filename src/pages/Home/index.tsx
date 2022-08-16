@@ -23,6 +23,7 @@ export const Home = () => {
                 <Text style={styles.text}>adoaskdksaodk</Text>
                 <TextInput style={styles.input} onChangeText={setNewTask} value={newTask} placeholder="New Task..." />
                 <TouchableOpacity
+                    testID='addButton'
                     style={styles.button}
                     activeOpacity={0.5}
                     onPress={handleAddPress}>
