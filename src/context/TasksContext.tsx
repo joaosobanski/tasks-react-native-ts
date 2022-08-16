@@ -4,7 +4,8 @@ import { ITask } from '../interfaces/ITasks';
 
 export interface ITasksContext {
     tasks: ITask[],
-    addTask(task: ITask): void
+    addTask(task: ITask): void,
+    removeTask(id: number): void
 }
 
 interface IProps {
@@ -30,7 +31,6 @@ export const TasksProvider: React.FC<IProps> = ({ children }) => {
 
     const addTask = async (task: ITask) => {
         try {
-            console.log('aq', task)
             const newTaskList = [...data, task];
             setData(newTaskList);
             await AsyncStorage.setItem(tasksData, JSON.stringify(newTaskList));
@@ -39,8 +39,18 @@ export const TasksProvider: React.FC<IProps> = ({ children }) => {
         }
     }
 
+    const removeTask = async (id: number) => {
+        try {
+            const newTaskList = data.filter(task => task.id != id);
+            setData(newTaskList);
+            await AsyncStorage.setItem(tasksData, JSON.stringify(newTaskList));
+        } catch (error) {
+            throw new Error(error as string);
+        }
+    }
+
     return (
-        <TasksContext.Provider value={{ tasks: data, addTask }}>
+        <TasksContext.Provider value={{ tasks: data, addTask, removeTask }}>
             {children}
         </TasksContext.Provider>
     )

@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { FlatList, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { TaskList } from '../../components/TaskList';
 import { TasksContext } from '../../context/TasksContext';
-import { ITask } from '../../interfaces/ITasks';
 import { styles } from './styles';
-
 
 export const Home = () => {
     const [newTask, setNewTask] = useState('');
