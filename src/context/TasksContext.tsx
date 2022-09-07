@@ -10,13 +10,14 @@ export interface ITask {
     title: string;
 }
 
+const tasksData = '@MyTasks:Tasks';
+
 export interface ITasksContext {
     tasks: ITask[];
     addTask(task: ITask): void;
     removeTask(id: number): void;
 }
 
-const tasksData = '@MyTasks:Tasks';
 
 export const TasksContext = React.createContext<ITasksContext>(
     {} as ITasksContext,
